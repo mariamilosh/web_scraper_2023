@@ -1,0 +1,7 @@
+csv_files/*
+!csv_files/.gitkeep
+__pycache__
+*.pyc
+.DS_Store
+env
+secrets/*
