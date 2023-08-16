@@ -13,20 +13,12 @@ class CompanyLinks:
         self.company_count = 0
 
     def get_links(self):
-        # self.company_links = self._read_list_of_pickled_company_links_from_file()
-        # self._configure()
-        # self._login_to_website()
         self._input_county_to_search_on_list_page()
         self._navigate_to_list_of_companies_page()
         self._scrape_links_from_paginated_list_of_companies()
         self._clean_up_county_search()
 
-        # for index, link in enumerate(self.company_links):
-        #     page = self._get_company_detail_page_for_company_link(index)
-        #     self._write_page_to_file(page, index)
-        # self.driver.close()
         print('There are {0} companies in {1} county.'.format(len(self.company_links), self.county))
-        # print(self.company_links)
         return self.company_links
     
     def _input_county_to_search_on_list_page(self):
@@ -39,7 +31,6 @@ class CompanyLinks:
         for county in previous_counties_to_remove:
             county.click()
 
-        # state_input_field = self.driver.find_element_by_id('statesearch')
         county_input_field = self.driver.find_element(By.ID, 'countysearch')
         county = self.county
         county_and_state = self.county + ' County, ' + self.state
@@ -99,8 +90,6 @@ class CompanyLinks:
         from a string that contained a link.
         """
         raw_href = link.get_attribute('href')
-        # raw_href = link['href']
-        # left_stripped_href = raw_href.lstrip("javascript:EZOpen('")
         left_stripped_href = raw_href.lstrip("javascript:Open('")
         clean_link = left_stripped_href.rstrip("');")
         return clean_link
