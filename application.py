@@ -18,7 +18,7 @@ COUNTIES_BY_STATE = {'IN': ['Allen'],
 
 def main():
     chrome_options = Options()
-    service = Service('/opt/homebrew/bin/chromedriver')
+    service = Service(secrets.CHROMEDRIVER_PATH)
     driver = webdriver.Chrome(service=service, options=chrome_options)
 
     driver.get(secrets.SITE_URL)
